@@ -1,0 +1,49 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type FollowModel {
+  followerId: String!
+  followeeId: String!
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Twit {
+  id: String!
+  creatorId: String!
+  twitBody: String!
+  createdAt: DateTime!
+}
+
+type Query {
+  login(user: Login!): String!
+  signUp(user: User!): String!
+  twit: String!
+  createNewTweet(twitBody: String!, token: String!): Twit!
+  deleteTwit(twitId: String!, token: String!): String!
+  getMyTwit(token: String!, twitId: String!): Twit!
+  getAllTwits(token: String!): [Twit!]!
+  getYourFollowers(token: String!): [FollowModel!]!
+  getYourFollowees(token: String!): [FollowModel!]!
+  follow(followeeId: String!, token: String!): String!
+  unfollow(followeeId: String!, token: String!): String!
+  listMyFollowers(token: String!): [FollowModel!]!
+  listMyFollowee(token: String!): [FollowModel!]!
+}
+
+input Login {
+  password: String
+  email: String
+}
+
+input User {
+  password: String
+  email: String
+  firstName: String!
+  lastName: String!
+}
